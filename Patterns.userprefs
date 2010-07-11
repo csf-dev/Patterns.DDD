@@ -1,0 +1,41 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DDD/DomainModel.cs" ctype="Workbench">
+    <Files>
+      <File FileName="DDD/DomainModel.cs" Line="168" Column="6" />
+      <File FileName="DDD/RepositoryContainer.cs" Line="6" Column="2" />
+      <File FileName="DDD/IRepositoryConfiguration.cs" Line="9" Column="35" />
+      <File FileName="DDD/IConfigurationRoot.cs" Line="8" Column="49" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="DDD" expanded="True">
+            <Node name="References" selected="True" />
+          </Node>
+          <Node name="Test.DDD" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True">
+          <Option id="ShowProjects" value="True" />
+          <Option id="NestedNamespaces" value="True" />
+          <Option id="PublicProtectedApiOnly" value="True" />
+          <Option id="PublicApiOnly" value="False" />
+          <Option id="GroupByAccess" value="False" />
+          <Option id="GroupByType" value="True" />
+          <Node name="DDD" expanded="True">
+            <Node name="CraigFowler" expanded="True">
+              <Node name="Patterns" expanded="True">
+                <Node name="DDD" expanded="True">
+                  <Node name="CraigFowler.Patterns.DDD.DomainModel" expanded="True" />
+                  <Node name="CraigFowler.Patterns.DDD.RepositoryContainer" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>
