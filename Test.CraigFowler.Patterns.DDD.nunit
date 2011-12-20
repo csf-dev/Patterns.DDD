@@ -1,0 +1,6 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" configfile="Unit_tests.config" binpathtype="Auto">
+    <assembly path="Test.CraigFowler.Patterns.DDD/bin/Debug/Test.Entity.dll" />
+  </Config>
+</NUnitProject>

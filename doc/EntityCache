@@ -1,0 +1,51 @@
+Objects
+-------
+
+interface IEntityCache
+
+  void Add(IEntity)
+  
+  IEntity Get(IIdentity, EntityIdentityReader)
+  
+  void Remove(IIdentity)
+  
+  void Remove(IEnumerable<IIdentity>)
+  
+  int Count { get; }
+  
+  IReplacementPolicy ReplacementPolicy { get; }
+  
+delegate IEntity EntityIdentityReader(IIdentity)
+
+Notes
+-----
+
+Scenarios for locking
+=====================
+
+* Getting an entity, cache hit:
+* * Establish a read lock that can be upgraded to a write lock, the target of the lock is an object instance
+    related to the identity.
+* * As soon as we know that we are serving a cache hit, we downgrade that to a standard read lock.
+* * Return the entity from the backing store and release the lock.
+
+* Getting an entity, cache miss:
+* * Establish a read lock that can be upgraded to a write lock, the target of the lock is an object instance
+    related to the identity.
+* * As soon as we know that it is a cache miss, upgrade the lock to a write lock, use the EntityIdentityReader
+    delagete passed to read the entity the expensive way.
+* * Store the entity in the cache backing store and inform the replacement policy.
+* * Return the entity and release the lock.
+
+* Cleaning the cache (inline clean):
+* * Not sure about this process yet, we would need to ensure that the write lock created in order to clean the
+    cache is NOT inside a read lock that is used to read from the cache.  This could cause deadlocks as two reads are
+    performed together, the first begins a cache-cleaning operation that will block until all other reads are completed.
+    Then, the other read tries to begin a cache-cleaning operation (which blocks because there is already another
+    occurring) and the second read never reaches the end of its read lock => deadlock scenario.
+
+* Clearing the cache (from a separate process):
+* * The separate process fires which begins a cache cleaning operation.
+* * It determines which items need to be removed using whatever algorithm it needs to.
+* * It issues a multi-identity Remove() method call to the cache itself.
+* * The cache requests exclusive/write locks for each of the items to be removed and removes them.

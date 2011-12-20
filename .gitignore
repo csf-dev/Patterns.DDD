@@ -1,3 +1,13 @@
-bin/
+# Files added by the OS/environment
+.directory
+
+# User preference and cache files added by MonoDevelop
+*.userprefs
 *.pidb
-*.desktop
+
+# Build output
+bin/
+
+# Added by NUnit test runner
+Testresult.xml
+*.VisualState.xml
