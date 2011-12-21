@@ -191,33 +191,15 @@ namespace CraigFowler.Patterns.DDD.Entities
     
     /// <summary>
     /// <para>
-    /// Overloaded.  Operator overload for testing equality between an identity instance and an arbitrary object.
+    /// Overloaded.  Operator overload for testing equality between an identity instance and an
+    /// <see cref="IIdentity"/>.
     /// </para>
     /// </summary>
     /// <param name="objectA">
     /// A generic identity instance.
     /// </param>
     /// <param name="objectB">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(Identity<T> objectA, object objectB)
-    {
-      return objectA.Equals(objectB);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing equality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A generic identity instance.
-    /// </param>
-    /// <param name="objectB">
-    /// A <see cref="IIdentity"/>
+    /// An <see cref="IIdentity"/>
     /// </param>
     /// <returns>
     /// A <see cref="System.Boolean"/>
@@ -229,33 +211,15 @@ namespace CraigFowler.Patterns.DDD.Entities
     
     /// <summary>
     /// <para>
-    /// Overloaded.  Operator overload for testing inequality between an identity instance and an arbitrary object.
+    /// Overloaded.  Operator overload for testing inequality between an identity instance and an
+    /// <see cref="IIdentity"/>.
     /// </para>
     /// </summary>
     /// <param name="objectA">
     /// A generic identity instance.
     /// </param>
     /// <param name="objectB">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(Identity<T> objectA, object objectB)
-    {
-      return !(objectA == objectB);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing inequality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A generic identity instance.
-    /// </param>
-    /// <param name="objectB">
-    /// A <see cref="IIdentity"/>
+    /// An <see cref="IIdentity"/>
     /// </param>
     /// <returns>
     /// A <see cref="System.Boolean"/>
@@ -263,82 +227,6 @@ namespace CraigFowler.Patterns.DDD.Entities
     public static bool operator !=(Identity<T> objectA, IIdentity objectB)
     {
       return !(objectA == objectB);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing equality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <param name="objectB">
-    /// A generic identity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(object objectA, Identity<T> objectB)
-    {
-      return (objectB == objectA);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing equality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A <see cref="IIdentity"/>
-    /// </param>
-    /// <param name="objectB">
-    /// A generic identity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(IIdentity objectA, Identity<T> objectB)
-    {
-      return (objectB == objectA);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing inequality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <param name="objectB">
-    /// A generic identity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(object objectA, Identity<T> objectB)
-    {
-      return (objectB != objectA);
-    }
-    
-    /// <summary>
-    /// <para>
-    /// Overloaded.  Operator overload for testing inequality between an identity instance and an arbitrary object.
-    /// </para>
-    /// </summary>
-    /// <param name="objectA">
-    /// A <see cref="IIdentity"/>
-    /// </param>
-    /// <param name="objectB">
-    /// A generic identity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(IIdentity objectA, Identity<T> objectB)
-    {
-      return (objectB != objectA);
     }
     
     #endregion

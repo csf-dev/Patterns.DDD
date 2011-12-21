@@ -137,7 +137,7 @@ namespace CraigFowler.Patterns.DDD.Data
     {
       RepositoryFactoryConfiguration config;
       
-      config = (RepositoryFactoryConfiguration) ConfigurationManager.GetSection("RepositoryFactories");
+      config = (RepositoryFactoryConfiguration) ConfigurationManager.GetSection(RepositoryFactoryConfiguration.LogicalPath);
       
       ConfiguredFactories = new RepositoryFactories();
       ConfiguredFactories._factories =  config.GetAllFactories();

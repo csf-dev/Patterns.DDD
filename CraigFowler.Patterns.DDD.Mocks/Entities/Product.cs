@@ -1,5 +1,5 @@
 //  
-//  TestRepositoryFactories.cs
+//  Product.cs
 //  
 //  Author:
 //       Craig Fowler <craig@craigfowler.me.uk>
@@ -19,25 +19,35 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using NUnit.Framework;
-using CraigFowler.Patterns.DDD.Data;
+using CraigFowler.Patterns.DDD.Entities;
 
-namespace Test.CraigFowler.Patterns.DDD
+namespace CraigFowler.Patterns.DDD.Mocks.Entities
 {
-  [TestFixture]
-  public class TestRepositoryFactories
+  public class Product : Entity<uint>
   {
-    [Test]
-    public void TestGetFromConfig()
+    #region properties
+    
+    public string Name
     {
-      Assert.IsInstanceOfType(typeof(DatabaseRepositoryFactory),
-                              RepositoryFactories.ConfiguredFactories["Default"],
-                              "Default factory is correct type");
-      
-      Assert.AreEqual("Server=localhost;User=root",
-                      ((DatabaseRepositoryFactory) RepositoryFactories.ConfiguredFactories["Default"]).ConnectionString,
-                      "Correct connection string");
+      get;
+      set;
     }
+    
+    public decimal Price
+    {
+      get;
+      set;
+    }
+    
+    #endregion
+    
+    #region constructors
+    
+    public Product () : base() {}
+    
+    public Product (uint id) : base(id) {}
+    
+    #endregion
   }
 }
 

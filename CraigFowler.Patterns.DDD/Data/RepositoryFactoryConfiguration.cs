@@ -31,6 +31,17 @@ namespace CraigFowler.Patterns.DDD.Data
   /// </summary>
   public class RepositoryFactoryConfiguration : ConfigurationSection
   {
+    #region constants
+    
+    /// <summary>
+    /// <para>
+    /// Read-only constant gets the path to where this configration should be found within the application configuration.
+    /// </para>
+    /// </summary>
+    public static readonly string LogicalPath = "CraigFowlerPatterns/RepositoryFactories";
+    
+    #endregion
+    
     #region properties
 
     /// <summary>
@@ -253,7 +264,7 @@ namespace CraigFowler.Patterns.DDD.Data
         
         if(factoryType == null)
         {
-          throw new TypeLoadException(String.Format("Could not load the type '{0}'.", this.TypeName));
+          throw new TypeLoadException(String.Format("Could not find or load the type '{0}'", this.TypeName));
         }
         
         if(factoryType.GetInterface(typeof(IRepositoryFactory).FullName) == null)

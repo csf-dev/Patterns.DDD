@@ -294,7 +294,36 @@ namespace CraigFowler.Patterns.DDD.Data
     /// </param>
     private void CheckNotAlreadyRegistered(IEntity entity, params IList<IEntity>[] entityCollections)
     {
-      if(entityCollections == null)
+      if(this.IsAlreadyRegistered(entity, entityCollections))
+      {
+        throw new EntityAlreadyRegisteredException(entity);
+      }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Determines whether an <paramref name="entity"/> is already registered with the given
+    /// <paramref name="entityCollections"/>.
+    /// </para>
+    /// </summary>
+    /// <param name="entity">
+    /// A <see cref="IEntity"/>
+    /// </param>
+    /// <param name="entityCollections">
+    /// A collection-of-collections of <see cref="IEntity"/>
+    /// </param>
+    /// <returns>
+    /// A <see cref="System.Boolean"/>
+    /// </returns>
+    private bool IsAlreadyRegistered(IEntity entity, params IList<IEntity>[] entityCollections)
+    {
+      bool output = false;
+      
+      if(entity == null)
+      {
+        throw new ArgumentNullException("entity");
+      }
+      else if(entityCollections == null)
       {
         throw new ArgumentNullException("entityCollections");
       }
@@ -303,10 +332,14 @@ namespace CraigFowler.Patterns.DDD.Data
       {
         if(entityCollection.Contains(entity))
         {
-          throw new EntityAlreadyRegisteredException(entity);
+          output = true;
+          break;
         }
       }
+      
+      return output;
     }
+
     
     #endregion
     
@@ -409,7 +442,8 @@ namespace CraigFowler.Patterns.DDD.Data
     /// </param>
     private void HandleDeleted(object sender, EventArgs ev)
     {
-      if(sender is IEntity)
+      if(sender is IEntity && !this.IsAlreadyRegistered((IEntity) sender,
+                                                        this.NewEntities, this.DeletedEntities))
       {
         this.RegisterDeleted((IEntity) sender);
       }
@@ -426,7 +460,8 @@ namespace CraigFowler.Patterns.DDD.Data
     /// </param>
     private void HandleDirty(object sender, EventArgs ev)
     {
-      if(sender is IEntity)
+      if(sender is IEntity && !this.IsAlreadyRegistered((IEntity) sender,
+                                                        this.NewEntities, this.DirtyEntities, this.DeletedEntities))
       {
         this.RegisterDirty((IEntity) sender);
       }

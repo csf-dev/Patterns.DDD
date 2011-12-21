@@ -39,7 +39,7 @@ namespace CraigFowler.Patterns.DDD.Entities
   {
     #region fields
     
-    private IIdentity<T> _identity;
+    private Identity<T>? _identity;
     private UnitOfWork _unitOfWork;
     
     #endregion
@@ -52,7 +52,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     public virtual bool HasIdentity
     {
       get {
-        return (_identity != null);
+        return (_identity.HasValue);
       }
     }
     
@@ -75,9 +75,9 @@ namespace CraigFowler.Patterns.DDD.Entities
       get {
         T output = default(T);
         
-        if(_identity != null)
+        if(_identity.HasValue)
         {
-          output = _identity.Value;
+          output = _identity.Value.Value;
         }
         
         return output;
@@ -98,12 +98,12 @@ namespace CraigFowler.Patterns.DDD.Entities
     /// </exception>
     public virtual IIdentity<T> GetIdentity()
     {
-      if(_identity == null)
+      if(!_identity.HasValue)
       {
         throw new InvalidOperationException("This entity instance does not have an identity.");
       }
       
-      return _identity;
+      return _identity.Value;
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     /// </exception>
     public virtual void SetIdentity(T identityValue)
     {
-      if(_identity != null)
+      if(_identity.HasValue)
       {
         throw new InvalidOperationException("The current entity already has an identity.  Identity may not be " +
                                             "changed once set without first calling ClearIdentity().");
@@ -318,7 +318,7 @@ namespace CraigFowler.Patterns.DDD.Entities
       }
       else
       {
-        output = String.Format("[{0}: no identity]", this.GetIdentityType().ToString());
+        output = String.Format("[{0}: no identity]", this.GetIdentityType().FullName);
       }
       
       return output;
@@ -339,7 +339,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     {
       if(!this.ValidateIdentity(identityValue))
       {
-        throw new ArgumentException("Invalid identity value.");
+        throw new ArgumentException("Invalid identity value");
       }
       
       return new Identity<T>(this.GetIdentityType(), identityValue);
@@ -385,7 +385,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     
     #endregion
     
-    #region manipulation methods
+    #region repository manipulation methods
     
     /// <summary>
     /// <para>
@@ -638,7 +638,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     #region static operator overloads
     
     /// <summary>
-    /// <para>Performs equality testing between an entity instance and a <see cref="System.Object"/>.</para>
+    /// <para>Performs equality testing between two entity instances.</para>
     /// </summary>
     /// <remarks>
     /// <para>This equality test does not require type equality between the objects to be compared.</para>
@@ -647,12 +647,12 @@ namespace CraigFowler.Patterns.DDD.Entities
     /// An entity instance.
     /// </param>
     /// <param name="obj">
-    /// A <see cref="System.Object"/>.
+    /// An <see cref="IEntity"/>
     /// </param>
     /// <returns>
     /// A <see cref="System.Boolean"/>
     /// </returns>
-    public static bool operator ==(Entity<T> entity, object obj)
+    public static bool operator ==(Entity<T> entity, IEntity obj)
     {
       bool output;
       
@@ -667,117 +667,6 @@ namespace CraigFowler.Patterns.DDD.Entities
       
       return output;
     }
-    
-    /// <summary>
-    /// <para>Performs equality testing between two entity instances.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <param name="obj">
-    /// An entity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(Entity<T> entity, IEntity<T> obj)
-    {
-      bool output;
-      
-      if((object) entity == null)
-      {
-        output = (obj == null);
-      }
-      else
-      {
-        output = entity.Equals(obj);
-      }
-      
-      return output;
-    }
-    
-    /// <summary>
-    /// <para>Performs equality testing between an entity instance and a <see cref="System.Object"/>.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="obj">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(object obj, Entity<T> entity)
-    {
-      return (entity == obj);
-    }
-
-    /// <summary>
-    /// <para>Performs equality testing between two entity instances.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="obj">
-    /// An entity instance.
-    /// </param>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator ==(IEntity<T> obj, Entity<T> entity)
-    {
-      return (entity == obj);
-    }
-    
-    /// <summary>
-    /// <para>Performs inequality testing between an entity instance and a <see cref="System.Object"/>.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <param name="obj">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(Entity<T> entity, object obj)
-    {
-      return !(entity == obj);
-    }
-    
-    /// <summary>
-    /// <para>Performs inequality testing between an entity instance and a <see cref="System.Object"/>.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="obj">
-    /// A <see cref="System.Object"/>
-    /// </param>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(object obj, Entity<T> entity)
-    {
-      return !(entity == obj);
-    }
 
     /// <summary>
     /// <para>Performs inequality testing between two entity instances.</para>
@@ -789,32 +678,12 @@ namespace CraigFowler.Patterns.DDD.Entities
     /// An entity instance.
     /// </param>
     /// <param name="obj">
-    /// An entity instance.
+    /// An <see cref="IEntity"/>
     /// </param>
     /// <returns>
     /// A <see cref="System.Boolean"/>
     /// </returns>
-    public static bool operator !=(Entity<T> entity, IEntity<T> obj)
-    {
-      return !(entity == obj);
-    }
-
-    /// <summary>
-    /// <para>Performs inequality testing between two entity instances.</para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This equality test does not require type equality between the objects to be compared.</para>
-    /// </remarks>
-    /// <param name="obj">
-    /// An entity instance.
-    /// </param>
-    /// <param name="entity">
-    /// An entity instance.
-    /// </param>
-    /// <returns>
-    /// A <see cref="System.Boolean"/>
-    /// </returns>
-    public static bool operator !=(IEntity<T> obj, Entity<T> entity)
+    public static bool operator !=(Entity<T> entity, IEntity obj)
     {
       return !(entity == obj);
     }

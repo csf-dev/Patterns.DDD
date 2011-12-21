@@ -59,7 +59,7 @@ namespace CraigFowler.Patterns.DDD.SessionState
     /// <remarks>
     /// <para>The <see cref="Type"/> described by this property must implement <see cref="SessionStorage"/>.</para>
     /// </remarks>
-    [ConfigurationProperty("TypeName", DefaultValue = "", IsRequired = false)]
+    [ConfigurationProperty("type", DefaultValue = "", IsRequired = false)]
     public string TypeName
     {
       get;

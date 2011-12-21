@@ -1,5 +1,5 @@
 //  
-//  MockRepositoryFactory.cs
+//  DummyRepositoryTransaction.cs
 //  
 //  Author:
 //       Craig Fowler <craig@craigfowler.me.uk>
@@ -20,16 +20,33 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using CraigFowler.Patterns.DDD.Data;
-using CraigFowler.Patterns.DDD.Entities;
 
-namespace Test.CraigFowler.Patterns.DDD
+namespace CraigFowler.Patterns.DDD.Mocks.Data
 {
-  public class MockRepositoryFactory : DatabaseRepositoryFactory
+  public class DummyRepositoryTransaction : IRepositoryTransaction
   {
-    public override IRepository<TEntity> GetRepository<TEntity> (IRepositoryConnection connection)
+    #region ITransaction implementation
+    
+    public void Commit ()
     {
-      return null;
+      // Intentional no-op
     }
+
+    public void Rollback ()
+    {
+      // Intentional no-op
+    }
+    
+    #endregion
+
+    #region IDisposable implementation
+    
+    public void Dispose ()
+    {
+      // Intentional no-op
+    }
+    
+    #endregion
   }
 }
 

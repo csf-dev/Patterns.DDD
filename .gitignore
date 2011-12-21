@@ -9,5 +9,5 @@
 bin/
 
 # Added by NUnit test runner
-Testresult.xml
+TestResult.xml
 *.VisualState.xml

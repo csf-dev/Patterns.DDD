@@ -45,12 +45,22 @@
       <Project>{6D348FD0-28C6-4108-94DE-A825A37D7F41}</Project>
       <Name>CraigFowler.Patterns.DDD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CraigFowler.Patterns.DDD.Mocks\CraigFowler.Patterns.DDD.Mocks.csproj">
+      <Project>{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}</Project>
+      <Name>CraigFowler.Patterns.DDD.Mocks</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestUnitOfWork.cs" />
-    <Compile Include="MockRepositoryConnection.cs" />
-    <Compile Include="TestRepositoryFactories.cs" />
-    <Compile Include="MockRepositoryFactory.cs" />
+    <Compile Include="Entities\TestEntity.cs" />
+    <Compile Include="Entities\TestIdentity.cs" />
+    <Compile Include="SessionState\TestSessionStorage.cs" />
+    <Compile Include="Data\TestRepositoryFactories.cs" />
+    <Compile Include="Data\TestUnitOfWork.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="SessionState\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
 </Project>

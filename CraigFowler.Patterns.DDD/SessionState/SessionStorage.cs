@@ -71,6 +71,11 @@ namespace CraigFowler.Patterns.DDD.SessionState
     /// </param>
     public abstract void ClearValue(string key);
     
+    /// <summary>
+    /// <para>Abandons the current session in the backend and removes all associations with the current session.</para>
+    /// </summary>
+    public abstract void Abandon();
+    
     #endregion
     
     #region constructor
@@ -83,6 +88,11 @@ namespace CraigFowler.Patterns.DDD.SessionState
       SessionStorageConfiguration config;
       
       config = (SessionStorageConfiguration) ConfigurationManager.GetSection(SessionStorageConfiguration.LogicalPath);
+      if(config == null)
+      {
+        throw new InvalidOperationException("Missing session storage configuration");
+      }
+      
       Current = config.GetSessionStorage();
     }
     

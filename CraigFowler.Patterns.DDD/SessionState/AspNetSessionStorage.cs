@@ -125,6 +125,26 @@ namespace CraigFowler.Patterns.DDD.SessionState
       }
     }
     
+    /// <summary>
+    /// <para>Abandons the current session in the backend and removes all associations with the current session.</para>
+    /// </summary>
+    public override void Abandon ()
+    {
+      try
+      {
+        this.SyncRoot.EnterWriteLock();
+        HttpSessionState backend = this.GetStorageBackend();
+        backend.Abandon();
+      }
+      finally
+      {
+        if(this.SyncRoot.IsWriteLockHeld)
+        {
+          this.SyncRoot.ExitWriteLock();
+        }
+      }
+    }
+    
     #endregion
     
     #region access to the session storage

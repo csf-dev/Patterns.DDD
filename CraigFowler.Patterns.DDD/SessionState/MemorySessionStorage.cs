@@ -34,15 +34,9 @@ namespace CraigFowler.Patterns.DDD.SessionState
   public class MemorySessionStorage : SessionStorage
   {
     #region properties
-
-    /// <summary>
-    /// <para>Gets and sets the storage backend for this instance.</para>
-    /// </summary>
-    protected Dictionary<string, object> Storage
-    {
-      get;
-      set;
-    }
+    
+    [ThreadStatic]
+    private static Dictionary<string, object> _storage = new Dictionary<string, object>();
     
     #endregion
 
@@ -69,7 +63,7 @@ namespace CraigFowler.Patterns.DDD.SessionState
       try
       {
         this.SyncRoot.EnterReadLock();
-        output = this.Storage.ContainsKey(key)? this.Storage[key] : null;
+        output = _storage.ContainsKey(key)? _storage[key] : null;
       }
       finally
       {
@@ -101,7 +95,7 @@ namespace CraigFowler.Patterns.DDD.SessionState
       try
       {
         this.SyncRoot.EnterWriteLock();
-        this.Storage[key] = value;
+        _storage[key] = value;
       }
       finally
       {
@@ -128,7 +122,26 @@ namespace CraigFowler.Patterns.DDD.SessionState
       try
       {
         this.SyncRoot.EnterWriteLock();
-        this.Storage.Remove(key);
+        _storage.Remove(key);
+      }
+      finally
+      {
+        if(this.SyncRoot.IsWriteLockHeld)
+        {
+          this.SyncRoot.ExitWriteLock();
+        }
+      }
+    }
+    
+    /// <summary>
+    /// <para>Abandons the current session in the backend and removes all associations with the current session.</para>
+    /// </summary>
+    public override void Abandon()
+    {
+      try
+      {
+        this.SyncRoot.EnterWriteLock();
+        _storage = new Dictionary<string, object>();
       }
       finally
       {
