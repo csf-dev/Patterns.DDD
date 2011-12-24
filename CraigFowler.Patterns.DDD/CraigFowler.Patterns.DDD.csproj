@@ -74,6 +74,10 @@
     <Compile Include="Data\DatabaseRepositoryFactory.cs" />
     <Compile Include="SessionState\SessionStorageConfiguration.cs" />
     <Compile Include="Data\RepositoryFactoryConfiguration.cs" />
+    <Compile Include="Data\ConfiguredDatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\MemoryRepositoryFactory.cs" />
+    <Compile Include="Data\MemoryRepositoryConnection.cs" />
+    <Compile Include="Data\MemoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

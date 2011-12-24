@@ -120,6 +120,11 @@ namespace CraigFowler.Patterns.DDD.Mocks.Data
         _log.AppendFormat("Delete entity '{0}'\n", entity);
       }
       
+      public void CreateOrUpdate (TEntity entity)
+      {
+        _log.AppendFormat("Create/epdate entity '{0}'\n", entity);
+      }
+      
       #endregion
 
       #region IRepository implementation
@@ -162,6 +167,11 @@ namespace CraigFowler.Patterns.DDD.Mocks.Data
         get {
           throw new NotImplementedException ();
         }
+      }
+
+      public void CreateOrUpdate (IEntity entity)
+      {
+        this.CreateOrUpdate((TEntity) entity);
       }
       
       #endregion

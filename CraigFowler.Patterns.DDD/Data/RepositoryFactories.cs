@@ -90,6 +90,14 @@ namespace CraigFowler.Patterns.DDD.Data
     /// Read-only, overloaded.  Gets the <see cref="IRepositoryFactory"/> at the given <paramref name="key"/>.
     /// </para>
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This indexer is intended for use with an enumerated type, the <paramref name="key"/> is converted to a
+    /// <see cref="System.String"/> using its <see cref="Object.ToString"/> method before being passed to the other
+    /// 'overload' of this indexer that takes a string parameter.  In short it provides a way of accessing the indexer
+    /// using a type-safe manner.
+    /// </para>
+    /// </remarks>
     /// <param name="key">
     /// A <see cref="System.Object"/>
     /// </param>
@@ -139,8 +147,8 @@ namespace CraigFowler.Patterns.DDD.Data
       
       config = (RepositoryFactoryConfiguration) ConfigurationManager.GetSection(RepositoryFactoryConfiguration.LogicalPath);
       
-      ConfiguredFactories = new RepositoryFactories();
-      ConfiguredFactories._factories =  config.GetAllFactories();
+      Factories = new RepositoryFactories();
+      Factories._factories =  config.GetAllFactories();
     }
     
     #endregion
@@ -153,7 +161,7 @@ namespace CraigFowler.Patterns.DDD.Data
     /// <see cref="IRepositoryFactory"/> instances described by the application configuration.
     /// </para>
     /// </summary>
-    public static RepositoryFactories ConfiguredFactories
+    public static RepositoryFactories Factories
     {
       get;
       private set;

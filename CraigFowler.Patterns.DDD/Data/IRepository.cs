@@ -88,6 +88,14 @@ namespace CraigFowler.Patterns.DDD.Data
     /// </param>
     void Delete(IEntity entity);
     
+    /// <summary>
+    /// <para>Creates the given <paramref name="entity"/> in the repository or updates it if it already exists.</para>
+    /// </summary>
+    /// <param name="entity">
+    /// A <see cref="IEntity"/>
+    /// </param>
+    void CreateOrUpdate(IEntity entity);
+    
     #endregion
   }
 }

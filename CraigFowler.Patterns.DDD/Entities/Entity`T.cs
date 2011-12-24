@@ -378,7 +378,7 @@ namespace CraigFowler.Patterns.DDD.Entities
     /// </returns>
     protected IRepositoryConnection GetRepositoryConnection(object repositoryIdentifier)
     {
-      IRepositoryFactory factory = RepositoryFactories.ConfiguredFactories[repositoryIdentifier];
+      IRepositoryFactory factory = RepositoryFactories.Factories[repositoryIdentifier];
       
       return factory.GetConnection();
     }
@@ -401,7 +401,7 @@ namespace CraigFowler.Patterns.DDD.Entities
       }
       else
       {
-        IRepositoryConnection connection = RepositoryFactories.ConfiguredFactories.Default.GetConnection();
+        IRepositoryConnection connection = RepositoryFactories.Factories.Default.GetConnection();
         this.Delete(connection);
       }
     }
@@ -441,7 +441,7 @@ namespace CraigFowler.Patterns.DDD.Entities
       }
       else
       {
-        IRepositoryConnection connection = RepositoryFactories.ConfiguredFactories.Default.GetConnection();
+        IRepositoryConnection connection = RepositoryFactories.Factories.Default.GetConnection();
         this.Update(connection);
       }
     }
@@ -481,7 +481,7 @@ namespace CraigFowler.Patterns.DDD.Entities
       }
       else
       {
-        IRepositoryConnection connection = RepositoryFactories.ConfiguredFactories.Default.GetConnection();
+        IRepositoryConnection connection = RepositoryFactories.Factories.Default.GetConnection();
         this.Create(connection);
       }
     }

@@ -56,6 +56,8 @@
     <Compile Include="SessionState\TestSessionStorage.cs" />
     <Compile Include="Data\TestRepositoryFactories.cs" />
     <Compile Include="Data\TestUnitOfWork.cs" />
+    <Compile Include="Data\TestConfiguredDatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\TestMemoryRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

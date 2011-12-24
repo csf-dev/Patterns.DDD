@@ -1,5 +1,5 @@
 //  
-//  TestRepositoryFactories.cs
+//  TestConfiguredDatabaseRepositoryFactory.cs
 //  
 //  Author:
 //       Craig Fowler <craig@craigfowler.me.uk>
@@ -21,6 +21,7 @@
 using System;
 using NUnit.Framework;
 using CraigFowler.Patterns.DDD.Data;
+using CraigFowler.Patterns.DDD.Mocks.Data;
 
 namespace Test.CraigFowler.Patterns.DDD.Data
 {
@@ -28,7 +29,7 @@ namespace Test.CraigFowler.Patterns.DDD.Data
   [Category("Requires configuration")]
   [Description("The tests in this fixture depend upon a working repository factory configuration containing " +
                "compatible settings.")]
-  public class TestRepositoryFactories
+  public class TestConfiguredDatabaseRepositoryFactory
   {
     #region set up
     
@@ -40,7 +41,7 @@ namespace Test.CraigFowler.Patterns.DDD.Data
        * loaded into the current AppDomain.  Otherwise the code that we are testing might not be able to find this
        * type.
        */
-      Type typeLoader = typeof(global::CraigFowler.Patterns.DDD.Mocks.Data.DummyRepositoryFactory);
+      Type typeLoader = typeof(global::CraigFowler.Patterns.DDD.Mocks.Data.DummyConfiguredFactory);
 #pragma warning restore 219
     }
     
@@ -49,36 +50,25 @@ namespace Test.CraigFowler.Patterns.DDD.Data
     #region tests
     
     [Test]
-    public void TestDefault()
+    public void TestConnectionStringName()
     {
       IRepositoryFactory factory;
       
-      Assert.IsNotNull(RepositoryFactories.Factories.Default, "Default factory is not null");
+      Assert.IsNotNull(RepositoryFactories.Factories["Test"], "Testing factory is not null");
       Assert.IsInstanceOfType(typeof(IRepositoryFactory),
-                              RepositoryFactories.Factories.Default,
+                              RepositoryFactories.Factories["Test"],
+                              "Implements interface");
+      Assert.IsInstanceOfType(typeof(DummyConfiguredFactory),
+                              RepositoryFactories.Factories["Test"],
                               "Correct type");
       
-      factory = RepositoryFactories.Factories.Default;
+      factory = RepositoryFactories.Factories["Test"];
       
-      Assert.AreEqual("Server=localhost;User=root",
-                      ((DatabaseRepositoryFactory) factory).ConnectionString,
-                      "Correct connection string");
-    }
-    
-    [Test]
-    public void TestIndexer()
-    {
-      IRepositoryFactory factory;
-      
-      Assert.IsNotNull(RepositoryFactories.Factories["Default"], "Default factory is not null");
-      Assert.IsInstanceOfType(typeof(IRepositoryFactory),
-                              RepositoryFactories.Factories["Default"],
-                              "Correct type");
-      
-      factory = RepositoryFactories.Factories["Default"];
-      
-      Assert.AreEqual("Server=localhost;User=root",
-                      ((DatabaseRepositoryFactory) factory).ConnectionString,
+      Assert.AreEqual("sample",
+                      ((ConfiguredDatabaseRepositoryFactory) factory).ConnectionStringName,
+                      "Correct connection string name");
+      Assert.AreEqual("Server=127.0.0.1;Port=3306;Database=test;User ID=root;Allow User Variables=True",
+                      ((ConfiguredDatabaseRepositoryFactory) factory).ConnectionString,
                       "Correct connection string");
     }
     

@@ -33,7 +33,7 @@ namespace CraigFowler.Patterns.DDD.Data
     /// <summary>
     /// <para>Read-only.  Gets the connection string that will be used to connect to the database provider.</para>
     /// </summary>
-    public string ConnectionString
+    public virtual string ConnectionString
     {
       get;
       set;
@@ -45,7 +45,7 @@ namespace CraigFowler.Patterns.DDD.Data
     /// (that will act as the database backend) is located.
     /// </para>
     /// </summary>
-    public string ProviderNamespace
+    public virtual string ProviderNamespace
     {
       get;
       set;

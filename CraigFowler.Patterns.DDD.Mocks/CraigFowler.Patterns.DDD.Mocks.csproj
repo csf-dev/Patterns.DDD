@@ -51,6 +51,7 @@
     <Compile Include="Data\DummyRepositoryFactory.cs" />
     <Compile Include="Data\DummyRepositoryConnection.cs" />
     <Compile Include="Data\DummyRepositoryTransaction.cs" />
+    <Compile Include="Data\DummyConfiguredFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
