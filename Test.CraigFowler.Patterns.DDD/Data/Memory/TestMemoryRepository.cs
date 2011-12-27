@@ -19,12 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using NUnit.Framework;
 using CraigFowler.Patterns.DDD.Data;
-using CraigFowler.Patterns.DDD.Mocks.Entities;
+using CraigFowler.Patterns.DDD.Data.Memory;
 using CraigFowler.Patterns.DDD.Entities;
+using CraigFowler.Patterns.DDD.Mocks.Entities;
+using NUnit.Framework;
 
-namespace Test.CraigFowler.Patterns.DDD.Data
+namespace Test.CraigFowler.Patterns.DDD.Data.Memory
 {
   [TestFixture]
   public class TestMemoryRepository

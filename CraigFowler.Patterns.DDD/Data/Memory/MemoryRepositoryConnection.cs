@@ -21,7 +21,7 @@
 using System;
 using CraigFowler.Patterns.DDD.Entities;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Memory
 {
   /// <summary>
   /// <para>Represents a connection to an in-memory repository.</para>
@@ -76,7 +76,7 @@ namespace CraigFowler.Patterns.DDD.Data
     /// </returns>
     public IRepositoryTransaction CreateTransaction ()
     {
-      throw new NotSupportedException();
+      return new FakeRepositoryTransaction();
     }
 
     /// <summary>

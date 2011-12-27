@@ -22,7 +22,7 @@
 using System;
 using System.Data;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Database
 {
   /// <summary>
   /// <para>An <see cref="IRepositoryTransaction"/> that wraps <see cref="IDbTransaction"/>.</para>

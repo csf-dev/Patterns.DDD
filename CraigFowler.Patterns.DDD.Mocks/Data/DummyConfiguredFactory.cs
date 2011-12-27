@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using CraigFowler.Patterns.DDD.Data;
+using CraigFowler.Patterns.DDD.Data.Database;
 
 namespace CraigFowler.Patterns.DDD.Mocks.Data
 {

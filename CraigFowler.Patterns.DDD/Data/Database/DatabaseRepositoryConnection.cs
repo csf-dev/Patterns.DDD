@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Database
 {
   /// <summary>
   /// <para>

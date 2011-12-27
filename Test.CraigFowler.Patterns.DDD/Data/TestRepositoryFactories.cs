@@ -21,6 +21,7 @@
 using System;
 using NUnit.Framework;
 using CraigFowler.Patterns.DDD.Data;
+using CraigFowler.Patterns.DDD.Data.Database;
 
 namespace Test.CraigFowler.Patterns.DDD.Data
 {
@@ -53,12 +54,12 @@ namespace Test.CraigFowler.Patterns.DDD.Data
     {
       IRepositoryFactory factory;
       
-      Assert.IsNotNull(RepositoryFactories.Factories.Default, "Default factory is not null");
+      Assert.IsNotNull(RepositoryFactories.Default, "Default factory is not null");
       Assert.IsInstanceOfType(typeof(IRepositoryFactory),
-                              RepositoryFactories.Factories.Default,
+                              RepositoryFactories.Default,
                               "Correct type");
       
-      factory = RepositoryFactories.Factories.Default;
+      factory = RepositoryFactories.Default;
       
       Assert.AreEqual("Server=localhost;User=root",
                       ((DatabaseRepositoryFactory) factory).ConnectionString,
@@ -66,16 +67,16 @@ namespace Test.CraigFowler.Patterns.DDD.Data
     }
     
     [Test]
-    public void TestIndexer()
+    public void TestFactory()
     {
       IRepositoryFactory factory;
       
-      Assert.IsNotNull(RepositoryFactories.Factories["Default"], "Default factory is not null");
+      Assert.IsNotNull(RepositoryFactories.Factory("Default"), "Default factory is not null");
       Assert.IsInstanceOfType(typeof(IRepositoryFactory),
-                              RepositoryFactories.Factories["Default"],
+                              RepositoryFactories.Factory("Default"),
                               "Correct type");
       
-      factory = RepositoryFactories.Factories["Default"];
+      factory = RepositoryFactories.Factory("Default");
       
       Assert.AreEqual("Server=localhost;User=root",
                       ((DatabaseRepositoryFactory) factory).ConnectionString,

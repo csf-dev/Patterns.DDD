@@ -68,16 +68,17 @@
     <Compile Include="Data\RepositoryFactoryBase.cs" />
     <Compile Include="Data\IRepositoryConnection.cs" />
     <Compile Include="Data\RepositoryConnectionBase.cs" />
-    <Compile Include="Data\DatabaseRepositoryTransaction.cs" />
     <Compile Include="Data\RepositoryFactories.cs" />
-    <Compile Include="Data\DatabaseRepositoryConnection.cs" />
-    <Compile Include="Data\DatabaseRepositoryFactory.cs" />
     <Compile Include="SessionState\SessionStorageConfiguration.cs" />
     <Compile Include="Data\RepositoryFactoryConfiguration.cs" />
-    <Compile Include="Data\ConfiguredDatabaseRepositoryFactory.cs" />
-    <Compile Include="Data\MemoryRepositoryFactory.cs" />
-    <Compile Include="Data\MemoryRepositoryConnection.cs" />
-    <Compile Include="Data\MemoryRepository.cs" />
+    <Compile Include="Data\Memory\MemoryRepository.cs" />
+    <Compile Include="Data\Memory\MemoryRepositoryConnection.cs" />
+    <Compile Include="Data\Memory\MemoryRepositoryFactory.cs" />
+    <Compile Include="Data\Database\ConfiguredDatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryConnection.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryTransaction.cs" />
+    <Compile Include="Data\FakeRepositoryTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -92,5 +93,7 @@
     <Folder Include="Data\" />
     <Folder Include="SessionState\" />
     <Folder Include="Caching\" />
+    <Folder Include="Data\Memory\" />
+    <Folder Include="Data\Database\" />
   </ItemGroup>
 </Project>

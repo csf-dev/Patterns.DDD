@@ -21,7 +21,7 @@
 
 using System;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Database
 {
   /// <summary>
   /// <para>Base class for repository factories that work from a database.</para>

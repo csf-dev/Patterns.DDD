@@ -21,7 +21,7 @@
 using System;
 using System.Configuration;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Database
 {
   /// <summary>
   /// <para>

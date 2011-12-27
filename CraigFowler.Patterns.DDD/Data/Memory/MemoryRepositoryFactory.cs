@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Memory
 {
   /// <summary>
   /// <para>

@@ -22,7 +22,7 @@ using System;
 using CraigFowler.Patterns.DDD.Entities;
 using System.Collections.Generic;
 
-namespace CraigFowler.Patterns.DDD.Data
+namespace CraigFowler.Patterns.DDD.Data.Memory
 {
   /// <summary>
   /// <para>An <see cref="IRepository"/> implementation that uses a simple in-memory backing store.</para>

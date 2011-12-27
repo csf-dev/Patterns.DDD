@@ -56,13 +56,15 @@
     <Compile Include="SessionState\TestSessionStorage.cs" />
     <Compile Include="Data\TestRepositoryFactories.cs" />
     <Compile Include="Data\TestUnitOfWork.cs" />
-    <Compile Include="Data\TestConfiguredDatabaseRepositoryFactory.cs" />
-    <Compile Include="Data\TestMemoryRepository.cs" />
+    <Compile Include="Data\Database\TestConfiguredDatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\Memory\TestMemoryRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="SessionState\" />
     <Folder Include="Data\" />
+    <Folder Include="Data\Memory\" />
+    <Folder Include="Data\Database\" />
   </ItemGroup>
 </Project>

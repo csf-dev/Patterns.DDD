@@ -19,11 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using NUnit.Framework;
 using CraigFowler.Patterns.DDD.Data;
+using CraigFowler.Patterns.DDD.Data.Database;
 using CraigFowler.Patterns.DDD.Mocks.Data;
+using NUnit.Framework;
 
-namespace Test.CraigFowler.Patterns.DDD.Data
+namespace Test.CraigFowler.Patterns.DDD.Data.Database
 {
   [TestFixture]
   [Category("Requires configuration")]
@@ -54,15 +55,15 @@ namespace Test.CraigFowler.Patterns.DDD.Data
     {
       IRepositoryFactory factory;
       
-      Assert.IsNotNull(RepositoryFactories.Factories["Test"], "Testing factory is not null");
+      Assert.IsNotNull(RepositoryFactories.Factory("Test"), "Testing factory is not null");
       Assert.IsInstanceOfType(typeof(IRepositoryFactory),
-                              RepositoryFactories.Factories["Test"],
+                              RepositoryFactories.Factory("Test"),
                               "Implements interface");
       Assert.IsInstanceOfType(typeof(DummyConfiguredFactory),
-                              RepositoryFactories.Factories["Test"],
+                              RepositoryFactories.Factory("Test"),
                               "Correct type");
       
-      factory = RepositoryFactories.Factories["Test"];
+      factory = RepositoryFactories.Factory("Test");
       
       Assert.AreEqual("sample",
                       ((ConfiguredDatabaseRepositoryFactory) factory).ConnectionStringName,
