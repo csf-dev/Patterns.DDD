@@ -74,7 +74,6 @@
     <Compile Include="Data\Memory\MemoryRepository.cs" />
     <Compile Include="Data\Memory\MemoryRepositoryConnection.cs" />
     <Compile Include="Data\Memory\MemoryRepositoryFactory.cs" />
-    <Compile Include="Data\Database\ConfiguredDatabaseRepositoryFactory.cs" />
     <Compile Include="Data\Database\DatabaseRepositoryConnection.cs" />
     <Compile Include="Data\Database\DatabaseRepositoryFactory.cs" />
     <Compile Include="Data\Database\DatabaseRepositoryTransaction.cs" />

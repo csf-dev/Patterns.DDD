@@ -21,6 +21,7 @@
 using System;
 using CSF.Patterns.DDD.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSF.Patterns.DDD.Data.Memory
 {
@@ -67,6 +68,17 @@ namespace CSF.Patterns.DDD.Data.Memory
     public IList<TEntity> ReadCollection (object criteria)
     {
       throw new NotImplementedException ();
+    }
+    
+    /// <summary>
+    /// <para>Gets an <see cref="IQueryable"/> that may be used to query the repository.</para>
+    /// </summary>
+    /// <returns>
+    /// A <see cref="IQueryable"/>
+    /// </returns>
+    public IQueryable<TEntity> AsQueryable()
+    {
+      return _backingStore.Values.AsQueryable();
     }
 
     /// <summary>
@@ -141,6 +153,11 @@ namespace CSF.Patterns.DDD.Data.Memory
     IList<IEntity> IRepository.ReadCollection (object criteria)
     {
       throw new NotImplementedException ();
+    }
+
+    IQueryable IRepository.AsQueryable ()
+    {
+      return this.AsQueryable();
     }
 
     IEntity IRepository.Read (IIdentity identity)

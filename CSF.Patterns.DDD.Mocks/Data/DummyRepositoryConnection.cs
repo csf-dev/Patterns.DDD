@@ -24,6 +24,7 @@ using CSF.Patterns.DDD.Entities;
 using System.Text;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace CSF.Patterns.DDD.Mocks.Data
 {
@@ -125,6 +126,11 @@ namespace CSF.Patterns.DDD.Mocks.Data
         _log.AppendFormat("Create/epdate entity '{0}'\n", entity);
       }
       
+      public IQueryable<TEntity> AsQueryable ()
+      {
+        throw new NotSupportedException();
+      }
+      
       #endregion
 
       #region IRepository implementation
@@ -172,6 +178,11 @@ namespace CSF.Patterns.DDD.Mocks.Data
       public void CreateOrUpdate (IEntity entity)
       {
         this.CreateOrUpdate((TEntity) entity);
+      }
+      
+      IQueryable IRepository.AsQueryable ()
+      {
+        return this.AsQueryable();
       }
       
       #endregion

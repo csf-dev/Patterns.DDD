@@ -127,6 +127,7 @@ namespace CSF.Patterns.DDD.Data.Database
     {
       Type provider = this.GetConnectionBackendType();
       ConstructorInfo constructor = provider.GetConstructor(new Type[] { typeof(string) });
+      IDbConnection output;
       
       if(constructor == null)
       {
@@ -136,7 +137,9 @@ namespace CSF.Patterns.DDD.Data.Database
         throw new NotSupportedException(message);
       }
       
-      return (IDbConnection) constructor.Invoke(new object[] { this.ConnectionString });
+      output = (IDbConnection) constructor.Invoke(new object[] { this.ConnectionString });
+      output.Open();
+      return output;
     }
     
     #endregion
@@ -161,11 +164,6 @@ namespace CSF.Patterns.DDD.Data.Database
     /// </returns>
     public override IRepositoryTransaction CreateTransaction()
     {
-      if(!this.HasTransactionSupport)
-      {
-        throw new NotSupportedException("This connection does not support transactions.");
-      }
-      
       return new DatabaseRepositoryTransaction(this.Connection.BeginTransaction());
     }
     

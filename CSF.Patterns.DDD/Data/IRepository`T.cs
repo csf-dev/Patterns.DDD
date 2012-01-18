@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using CSF.Patterns.DDD.Entities;
+using System.Linq;
 
 namespace CSF.Patterns.DDD.Data
 {
@@ -90,6 +91,14 @@ namespace CSF.Patterns.DDD.Data
     /// A <see cref="IEntity"/>
     /// </param>
     void CreateOrUpdate(TEntity entity);
+    
+    /// <summary>
+    /// <para>Gets an <see cref="IQueryable"/> that may be used to query the repository.</para>
+    /// </summary>
+    /// <returns>
+    /// A <see cref="IQueryable"/>
+    /// </returns>
+    new IQueryable<TEntity> AsQueryable();
     
     #endregion
   }

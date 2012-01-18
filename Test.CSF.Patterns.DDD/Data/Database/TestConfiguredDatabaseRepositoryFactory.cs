@@ -42,7 +42,7 @@ namespace Test.CSF.Patterns.DDD.Data.Database
        * loaded into the current AppDomain.  Otherwise the code that we are testing might not be able to find this
        * type.
        */
-      Type typeLoader = typeof(global::CSF.Patterns.DDD.Mocks.Data.DummyConfiguredFactory);
+      Type typeLoader = typeof(global::CSF.Patterns.DDD.Mocks.Data.DummyRepositoryFactory);
 #pragma warning restore 219
     }
     
@@ -59,17 +59,17 @@ namespace Test.CSF.Patterns.DDD.Data.Database
       Assert.IsInstanceOfType(typeof(IRepositoryFactory),
                               RepositoryFactories.Factory("Test"),
                               "Implements interface");
-      Assert.IsInstanceOfType(typeof(DummyConfiguredFactory),
+      Assert.IsInstanceOfType(typeof(DummyRepositoryFactory),
                               RepositoryFactories.Factory("Test"),
                               "Correct type");
       
       factory = RepositoryFactories.Factory("Test");
       
       Assert.AreEqual("sample",
-                      ((ConfiguredDatabaseRepositoryFactory) factory).ConnectionStringName,
+                      ((DatabaseRepositoryFactory) factory).ConnectionStringName,
                       "Correct connection string name");
       Assert.AreEqual("Server=127.0.0.1;Port=3306;Database=test;User ID=root;Allow User Variables=True",
-                      ((ConfiguredDatabaseRepositoryFactory) factory).ConnectionString,
+                      ((DatabaseRepositoryFactory) factory).ConnectionString,
                       "Correct connection string");
     }
     

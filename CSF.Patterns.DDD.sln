@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.CSF.Patterns.DDD", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Patterns.DDD.Mocks", "CSF.Patterns.DDD.Mocks\CSF.Patterns.DDD.Mocks.csproj", "{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Patterns.DDD.Data.NHibernate", "CSF.Patterns.DDD.Data.NHibernate\CSF.Patterns.DDD.Data.NHibernate.csproj", "{4E619547-ED57-442A-A204-F1368739ADED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,6 +19,10 @@ Global
 		{16A76A69-443B-468A-9005-4B74B5558F68}.Debug|x86.Build.0 = Debug|x86
 		{16A76A69-443B-468A-9005-4B74B5558F68}.Release|x86.ActiveCfg = Release|x86
 		{16A76A69-443B-468A-9005-4B74B5558F68}.Release|x86.Build.0 = Release|x86
+		{4E619547-ED57-442A-A204-F1368739ADED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E619547-ED57-442A-A204-F1368739ADED}.Debug|x86.Build.0 = Debug|Any CPU
+		{4E619547-ED57-442A-A204-F1368739ADED}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E619547-ED57-442A-A204-F1368739ADED}.Release|x86.Build.0 = Release|Any CPU
 		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Debug|x86.ActiveCfg = Debug|x86
 		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Debug|x86.Build.0 = Debug|x86
 		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Release|x86.ActiveCfg = Release|x86

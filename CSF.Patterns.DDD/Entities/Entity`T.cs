@@ -157,7 +157,7 @@ namespace CSF.Patterns.DDD.Entities
     /// <param name="unitOfWork">
     /// A <see cref="UnitOfWork"/>
     /// </param>
-    public void RegisterUnitOfWork(UnitOfWork unitOfWork)
+    public virtual void RegisterUnitOfWork(UnitOfWork unitOfWork)
     {
       if(unitOfWork == null)
       {
@@ -175,7 +175,7 @@ namespace CSF.Patterns.DDD.Entities
     /// <summary>
     /// <para>Deletes the association between this instance and a registered <see cref="UnitOfWork"/>.</para>
     /// </summary>
-    public void UnRegisterUnitOfWork()
+    public virtual void UnRegisterUnitOfWork()
     {
       _unitOfWork = null;
     }
@@ -516,19 +516,19 @@ namespace CSF.Patterns.DDD.Entities
     /// This event is invoked when the current instance becomes dirty (requires update in a presistent data store).
     /// </para>
     /// </summary>
-    public event EventHandler Dirty;
+    public virtual event EventHandler Dirty;
     
     /// <summary>
     /// <para>This event is invoked when the current instance is to deleted in a persistent data store.</para>
     /// </summary>
-    public event EventHandler Deleted;
+    public virtual event EventHandler Deleted;
     
     /// <summary>
     /// <para>
     /// This event is invoked when the current instance is created (stored within the repository for the first time).
     /// </para>
     /// </summary>
-    public event EventHandler Created;
+    public virtual event EventHandler Created;
     
     /// <summary>
     /// <para>Event invoker for when this instance becomes dirty.</para>

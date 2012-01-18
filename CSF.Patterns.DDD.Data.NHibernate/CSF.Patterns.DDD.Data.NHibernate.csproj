@@ -5,11 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}</ProjectGuid>
+    <ProjectGuid>{4E619547-ED57-442A-A204-F1368739ADED}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CSF.Patterns.DDD.Mocks</RootNamespace>
-    <newfilesearch>OnLoad</newfilesearch>
-    <AssemblyName>CSF.Patterns.DDD.Mocks</AssemblyName>
+    <RootNamespace>CSF.Patterns.DDD.Data.NHibernate</RootNamespace>
+    <AssemblyName>CSF.Patterns.DDD.Data.NHibernate</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,36 +21,43 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>..\bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <ConsolePause>false</ConsolePause>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Core" />
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NHibernateRepositoryConnection.cs" />
+    <Compile Include="NHibernateRepositoryTransaction.cs" />
+    <Compile Include="NHibernateRepositoryBase.cs" />
+    <Compile Include="NHibernateRepositoryFactoryBase.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\CSF.Patterns.DDD\CSF.Patterns.DDD.csproj">
       <Project>{6D348FD0-28C6-4108-94DE-A825A37D7F41}</Project>
       <Name>CSF.Patterns.DDD</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Entities\Person.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Data\DummyRepositoryFactory.cs" />
-    <Compile Include="Data\DummyRepositoryConnection.cs" />
-    <Compile Include="Data\DummyRepositoryTransaction.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

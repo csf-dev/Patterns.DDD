@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Configuration;
 
 namespace CSF.Patterns.DDD.Data.Database
 {
@@ -28,7 +29,38 @@ namespace CSF.Patterns.DDD.Data.Database
   /// </summary>
   public abstract class DatabaseRepositoryFactory : RepositoryFactoryBase
   {
+    #region fields
+    
+    private string _connectionStringName;
+    
+    #endregion
+    
     #region properties
+    
+    /// <summary>
+    /// <para>Gets and sets the name of the connection string (in the application configuration) to use.</para>
+    /// </summary>
+    public virtual string ConnectionStringName
+    {
+      get {
+        return _connectionStringName;
+      }
+      set {
+        _connectionStringName = value;
+        
+        if(!String.IsNullOrEmpty(value)
+           && String.IsNullOrEmpty(this.ConnectionString)
+           && String.IsNullOrEmpty(this.ProviderNamespace))
+        {
+          try
+          {
+            this.PopulateFromConfiguredConnectionString();
+          }
+          // If there is no connection string by this name then this exception might occur, in which case do nothing
+          catch(NullReferenceException) {}
+        }
+      }
+    }
     
     /// <summary>
     /// <para>Read-only.  Gets the connection string that will be used to connect to the database provider.</para>
@@ -53,6 +85,26 @@ namespace CSF.Patterns.DDD.Data.Database
     
     #endregion
     
+    #region methods
+    
+    /// <summary>
+    /// Populates (and overwrites) <see cref="ConnectionString"/> and <see cref="ProviderNamespace"/> with data found
+    /// within the application configuration's connectionstrings property, using <see cref="ConnectionStringName"/>.
+    /// </summary>
+    protected void PopulateFromConfiguredConnectionString()
+    {
+      if(String.IsNullOrEmpty(this.ConnectionStringName))
+      {
+        throw new InvalidOperationException("No connection string name has been provided.");
+      }
+      
+      ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[this.ConnectionStringName];
+      this.ConnectionString = settings.ConnectionString;
+      this.ProviderNamespace = settings.ProviderName;
+    }
+    
+    #endregion
+    
     #region IRepositoryFactory implementation
     
     /// <summary>
@@ -63,6 +115,11 @@ namespace CSF.Patterns.DDD.Data.Database
     /// </returns>
     public override IRepositoryConnection GetConnection ()
     {
+      if(String.IsNullOrEmpty(this.ConnectionString) || String.IsNullOrEmpty(this.ProviderNamespace))
+      {
+        this.PopulateFromConfiguredConnectionString();
+      }
+      
       return new DatabaseRepositoryConnection(this.ConnectionString, this.ProviderNamespace, this);
     }
     
