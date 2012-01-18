@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6D348FD0-28C6-4108-94DE-A825A37D7F41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CSF.Patterns.DDD</RootNamespace>
+    <AssemblyName>CSF.Patterns.DDD</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <newfilesearch>OnLoad</newfilesearch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="ITransaction.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\IEntity`T.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\IRepository`T.cs" />
+    <Compile Include="Data\IRepositoryTransaction.cs" />
+    <Compile Include="SessionState\AspNetSessionStorage.cs" />
+    <Compile Include="SessionState\MemorySessionStorage.cs" />
+    <Compile Include="Entities\Identity`T.cs" />
+    <Compile Include="Entities\IIdentity.cs" />
+    <Compile Include="Caching\IReplacementPolicy.cs" />
+    <Compile Include="Entities\EntityReader.cs" />
+    <Compile Include="Entities\IIdentity`T.cs" />
+    <Compile Include="Caching\IEntityCache.cs" />
+    <Compile Include="Caching\IItemPolicy.cs" />
+    <Compile Include="Caching\ItemLifecycleMilestones.cs" />
+    <Compile Include="Caching\CachingEventArgs.cs" />
+    <Compile Include="Caching\ItemAction.cs" />
+    <Compile Include="Caching\EntityCacheBase.cs" />
+    <Compile Include="Caching\ICacheBackingStore.cs" />
+    <Compile Include="Caching\CachingEventType.cs" />
+    <Compile Include="Caching\InlineEntityCache.cs" />
+    <Compile Include="Entities\Entity`T.cs" />
+    <Compile Include="SessionState\SessionStorage.cs" />
+    <Compile Include="Data\EntityAlreadyRegisteredException.cs" />
+    <Compile Include="Data\EntityLifecycleState.cs" />
+    <Compile Include="Data\UnitOfWork.cs" />
+    <Compile Include="Data\IRepositoryFactory.cs" />
+    <Compile Include="Data\RepositoryFactoryBase.cs" />
+    <Compile Include="Data\IRepositoryConnection.cs" />
+    <Compile Include="Data\RepositoryConnectionBase.cs" />
+    <Compile Include="Data\RepositoryFactories.cs" />
+    <Compile Include="SessionState\SessionStorageConfiguration.cs" />
+    <Compile Include="Data\RepositoryFactoryConfiguration.cs" />
+    <Compile Include="Data\Memory\MemoryRepository.cs" />
+    <Compile Include="Data\Memory\MemoryRepositoryConnection.cs" />
+    <Compile Include="Data\Memory\MemoryRepositoryFactory.cs" />
+    <Compile Include="Data\Database\ConfiguredDatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryConnection.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryFactory.cs" />
+    <Compile Include="Data\Database\DatabaseRepositoryTransaction.cs" />
+    <Compile Include="Data\FakeRepositoryTransaction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Data\" />
+    <Folder Include="SessionState\" />
+    <Folder Include="Caching\" />
+    <Folder Include="Data\Memory\" />
+    <Folder Include="Data\Database\" />
+  </ItemGroup>
+</Project>

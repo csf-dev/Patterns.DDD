@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Patterns.DDD", "CSF.Patterns.DDD\CSF.Patterns.DDD.csproj", "{6D348FD0-28C6-4108-94DE-A825A37D7F41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.CSF.Patterns.DDD", "Test.CSF.Patterns.DDD\Test.CSF.Patterns.DDD.csproj", "{16A76A69-443B-468A-9005-4B74B5558F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Patterns.DDD.Mocks", "CSF.Patterns.DDD.Mocks\CSF.Patterns.DDD.Mocks.csproj", "{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16A76A69-443B-468A-9005-4B74B5558F68}.Debug|x86.ActiveCfg = Debug|x86
+		{16A76A69-443B-468A-9005-4B74B5558F68}.Debug|x86.Build.0 = Debug|x86
+		{16A76A69-443B-468A-9005-4B74B5558F68}.Release|x86.ActiveCfg = Release|x86
+		{16A76A69-443B-468A-9005-4B74B5558F68}.Release|x86.Build.0 = Release|x86
+		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Debug|x86.ActiveCfg = Debug|x86
+		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Debug|x86.Build.0 = Debug|x86
+		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Release|x86.ActiveCfg = Release|x86
+		{6D348FD0-28C6-4108-94DE-A825A37D7F41}.Release|x86.Build.0 = Release|x86
+		{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}.Debug|x86.Build.0 = Debug|Any CPU
+		{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{BBD16165-F4EC-4B3B-B1A1-EDED4C4A6AC4}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CSF.Patterns.DDD\CSF.Patterns.DDD.csproj
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.inheritsSet = GPLv3License
+	EndGlobalSection
+EndGlobal
