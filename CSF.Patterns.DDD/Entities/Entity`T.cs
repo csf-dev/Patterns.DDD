@@ -148,7 +148,7 @@ namespace CSF.Patterns.DDD.Entities
     /// </returns>
     public virtual bool ValidateIdentity(T identityValue)
     {
-      return (!identityValue.Equals(default(T)));
+      return this.Validate(identityValue);
     }
     
     /// <summary>
@@ -337,7 +337,7 @@ namespace CSF.Patterns.DDD.Entities
     /// </returns>
     protected virtual Identity<T> CreateIdentity(T identityValue)
     {
-      if(!this.ValidateIdentity(identityValue))
+      if(!this.Validate(identityValue))
       {
         throw new ArgumentException("Invalid identity value");
       }
@@ -381,6 +381,20 @@ namespace CSF.Patterns.DDD.Entities
       IRepositoryFactory factory = RepositoryFactories.Factory(repositoryIdentifier);
       
       return factory.GetConnection();
+    }
+    
+    /// <summary>
+    /// <para>Private method to validate an identity value.</para>
+    /// </summary>
+    /// <param name="identityValue">
+    /// A value of the generic type of this instance.
+    /// </param>
+    /// <returns>
+    /// A <see cref="System.Boolean"/>
+    /// </returns>
+    private bool Validate(T identityValue)
+    {
+      return !Object.Equals(identityValue, default(T));
     }
     
     #endregion
@@ -618,7 +632,7 @@ namespace CSF.Patterns.DDD.Entities
     /// </param>
     public Entity(T initialReference, UnitOfWork tracker)
     {
-      if(this.ValidateIdentity(initialReference))
+      if(this.Validate(initialReference))
       {
         _identity = this.CreateIdentity(initialReference);
       }
