@@ -119,6 +119,75 @@ namespace CSF.Patterns.DDD.Data
       return Factory(key.ToString());
     }
     
+    /// <summary>
+    /// <para>
+    /// Overloaded.  Convenience method to get a connection to the <see cref="Default"/> repository factory.
+    /// </para>
+    /// </summary>
+    /// <returns>
+    /// A <see cref="IRepositoryConnection"/>
+    /// </returns>
+    public static IRepositoryConnection GetConnection()
+    {
+      IRepositoryFactory factory = Default;
+      return GetConnection(factory);
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Overloaded.  Convenience method to get a connection to the repository factory named by the given
+    /// <paramref name="key"/>.
+    /// </para>
+    /// </summary>
+    /// <param name="key">
+    /// A <see cref="System.String"/>
+    /// </param>
+    /// <returns>
+    /// A <see cref="IRepositoryConnection"/>
+    /// </returns>
+    public static IRepositoryConnection GetConnection(string key)
+    {
+      IRepositoryFactory factory = Factory(key);
+      return GetConnection(factory);
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Overloaded.  Convenience method to get a connection to the repository factory named by the given
+    /// <paramref name="key"/>.
+    /// </para>
+    /// </summary>
+    /// <param name="key">
+    /// A <see cref="System.Object"/>
+    /// </param>
+    /// <returns>
+    /// A <see cref="IRepositoryConnection"/>
+    /// </returns>
+    public static IRepositoryConnection GetConnection(object key)
+    {
+      IRepositoryFactory factory = Factory(key);
+      return GetConnection(factory);
+    }
+    
+    /// <summary>
+    /// <para>Overloaded.  Gets a connection from the given repository <paramref name="factory"/>.</para>
+    /// </summary>
+    /// <param name="factory">
+    /// A <see cref="IRepositoryFactory"/>
+    /// </param>
+    /// <returns>
+    /// A <see cref="IRepositoryConnection"/>
+    /// </returns>
+    private static IRepositoryConnection GetConnection(IRepositoryFactory factory)
+    {
+      if(factory == null)
+      {
+        throw new ArgumentNullException("factory");
+      }
+      
+      return factory.GetConnection();
+    }
+    
     #endregion
     
     #region constructors

@@ -33,7 +33,7 @@ namespace CSF.Patterns.DDD.Data.Memory
     #region fields
     
     private Dictionary<IIdentity, TEntity> _backingStore;
-    private uint _autoIncrement;
+    private ulong _autoIncrement;
     
     #endregion
     
