@@ -1,0 +1,9 @@
+As of 18th May 2012 I have ABANDONED this project
+(wow, that was short-lived wasn't it?)
+
+The rationale is that I have since seen better ways of doing much of what this
+project contains.  For a start, just about everything within the Data namespace
+is junk that I will never use again.  Anything of use in this project has been
+ported over to:
+
+https://github.com/CSF-Software-Development/csf-software-utilities
